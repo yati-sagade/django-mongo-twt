@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for openshift project.
 import os
+from mongoengine import connect
 
 # a setting to determine whether we are running on OpenShift
 ON_OPENSHIFT = False
@@ -20,6 +21,10 @@ MANAGERS = ADMINS
 if ON_OPENSHIFT:
     # os.environ['OPENSHIFT_DB_*'] variables can be used with databases created
     # with rhc-ctl-app (see /README in this git repo)
+
+    # Since we're using mongoengine, the following setting can be ignored, unless,
+    # of course, if you desire to use a relational DB as well!
+    # We'll connect to mongod from here itself!
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -30,6 +35,12 @@ if ON_OPENSHIFT:
             'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
         }
     }
+    connect('twt',
+            username=os.environ['OPENSHIFT_NOSQL_DB_USERNAME'],
+            password=os.environ['OPENSHIFT_NOSQL_DB_PASSWORD'],
+            host=os.environ['OPENSHIFT_NOSQL_DB_HOST'],
+            port=int(os.environ['OPENSHIFT_NOSQL_DB_PORT']))
+
 else:
     DATABASES = {
         'default': {
@@ -41,7 +52,7 @@ else:
             'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
         }
     }
-
+    connect('twt')  # Add your auth info using if you happen to use it locally.
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
