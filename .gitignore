@@ -1,2 +1,7 @@
-*.pyc
-*.pyo
+*.py[co]
+*.sw[po]
+*.bak
+*.orig
+*~
+.project
+.pydevproject
