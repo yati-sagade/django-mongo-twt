@@ -97,3 +97,17 @@ ul.follow li a span{float:right;font-weight:bold;}
 
 .single .tweets p {background:#FFF;-webkit-border-radius:5px;padding:10px;}
 .follow-user,.unfollow-user{background:#eee;padding:5px;margin:0 0 10px 0;-webkit-border-radius:5px;text-align:center;}
+
+ul.errorlist {
+    margin: 0;
+    padding: 0;
+}
+
+.errorlist li{
+    background-color: #f00;
+    color: #fff;
+    display: block;
+    font-size: 10px;
+    margin: 0 0 3px;
+    padding: 4px 5px;
+}

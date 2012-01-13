@@ -1,6 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
 
-import twtapp.urls
 import twtapp.views
 
 urlpatterns = patterns('twtapp.views',
