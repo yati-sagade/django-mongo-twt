@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>OpenShift Django-Mongo Twt</title>
+        {% block style %}
+        <link rel="stylesheet"
+              href="/static/retwis-py.css"
+              type="text/css" media="screen" />
+        {% endblock %}
+    </head>
+    <body class="{{header}}">
+        <div id="header">
+            <a href="/">OpenShift Django-Mongo Twt</a>
+            <div id="nav">
+                <a href="/">home</a>
+                {% if logged %}
+                <a href="/logout/">sign out</a>
+                {% else %}
+                <a href="/login/">sign in</a>
+                <a href="/login/"><strong>sign up</strong></a>
+                {% endif %}
+            </div>
+        </div>
+             
+        <div id="container">
+            {% block contents %}
+            {% endblock %}
+        </div>
+
+        <script src="/static/app.js" type="text/javascript" charset="utf-8"></script>
+    </body>
+</html>
+
+

@@ -1,0 +1,15 @@
+{% extends "twtapp/base.html" %}
+
+{% block contents %}
+<div class="tweets">
+    <p>
+        <img src="{{STATIC_URL}}avatar.png" />
+        <strong><a href="/{{ruser.username}}/">{{ruser.username}}</a></strong>
+        {{tweet.content}}
+        <span>
+            <a href="/{{ruser.username}}/statuses/{{tweet.getId}}/">permalink</a>
+        </span>
+    </p>
+</div>
+{% endblock %}
+

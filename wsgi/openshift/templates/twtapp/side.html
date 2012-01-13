@@ -1,0 +1,14 @@
+<div id="side">
+    <p class="bio">
+        <img src="{{STATIC_URL}}avatar-small.png" />{{luser.username}}
+    </p>
+    <div>
+        <ul class="follow">
+            {% for u in all_users %}
+                <li><strong><a href="/{{u.username}}">{{u.username}}</a></strong></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+

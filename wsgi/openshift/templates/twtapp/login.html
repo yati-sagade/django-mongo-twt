@@ -1,0 +1,24 @@
+{% extends "twtapp/base.html" %}
+
+{% block contents %}
+<form method="post" action="{% if hidden_next %} next{{hidden_next}} {% else %} {% endif %}">
+    {% csrf_token %}
+    {{ loginform.as_table }}
+    <tr>
+        <td></td>
+        <td><input type="submit" value="sign in" /></td>
+    </tr>
+</form>
+
+<form method="post" action="/signup/">
+    {% csrf_token %}
+    {{ signupform.as_table }}
+    <tr>
+        <td></td>
+        <td><input type="submit" value="sign up" /></td>
+    </tr>
+</form>
+{% endblock %}
+
+    
+

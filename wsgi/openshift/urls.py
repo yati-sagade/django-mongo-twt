@@ -1,17 +1,20 @@
 from django.conf.urls.defaults import patterns, include, url
 
-# Uncomment the next two lines to enable the admin:
-from django.contrib import admin
-admin.autodiscover()
+import twtapp.urls
+import twtapp.views
 
-urlpatterns = patterns('',
-    # Examples:
-    url(r'^$', 'openshift.views.home', name='home'),
-    # url(r'^openshift/', include('openshift.foo.urls')),
+urlpatterns = patterns('twtapp.views',
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+    (r'^$', twtapp.views.home),
+    (r'^login/next(?P<next_page>/.*)', 'login_view'),
+    (r'^login/$', 'login_view'),
+    (r'^logout/$', 'logout_view'),
+    (r'^home/$', 'home'),
+    (r'^post/$', 'post'),
+    (r'^(?P<username>[^/]*)/$', 'user_page'),
+    (r'^(?P<username>[^/]*)/statuses/(?P<tweet_id>[^/]*)/$', 'status'),
+    (r'^follow/(?P<to_follow>[^/]*)/$', 'follow_view'),
+    (r'^unfollow/(?P<the_creep>[^/]*)/$', 'unfollow_view'),
+    
 )
+

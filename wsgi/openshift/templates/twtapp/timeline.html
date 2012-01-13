@@ -1,0 +1,24 @@
+{% extends "twtapp/base.html" %}
+{% block contents %}
+<div id="main">
+    <h1>What's happening?</h1>
+    <form method="post" action="/post/" class="update">
+        {% csrf_token %}
+        <textarea name="content"></textarea>
+        <fieldset>
+            <input type="submit" value="update" />
+        </fieldset>
+    </form>
+    <div class="tweets">
+        {% for tweet in luser.get_timeline %}
+        <p>
+            <img src="{{STATIC_URL}}avatar.png" />
+            <strong><a href="/{{tweet.uid}}">{{tweet.uid}}</a></strong>
+            {{tweet.content}}<span><a href="/{{tweet.uid}}/statuses/{{tweet.getId}}">permalink</a></span>
+        </p>
+        {% endfor %}
+    </div>
+</div>
+    {% include "twtapp/side.html" %}
+{% endblock %}
+

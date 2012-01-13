@@ -153,6 +153,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'twtapp',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -177,3 +178,14 @@ LOGGING = {
         },
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+                            'mongoengine.django.auth.MongoEngineBackend',
+                          )
+
+SESSION_ENGINE = 'mongoengine.django.sessions'
+
+# The following setting is used by the login_required() decorator to determine 
+# the page to redirect to if a view needs to log a user in before executing.
+LOGIN_URL = '/login/'
+
