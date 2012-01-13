@@ -35,7 +35,7 @@ if ON_OPENSHIFT:
             'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
         }
     }
-    connect('twt',
+    connect('djangomongotwt',
             username=os.environ['OPENSHIFT_NOSQL_DB_USERNAME'],
             password=os.environ['OPENSHIFT_NOSQL_DB_PASSWORD'],
             host=os.environ['OPENSHIFT_NOSQL_DB_HOST'],
