@@ -51,10 +51,10 @@ class UserProfile(User):
         return (self.__class__.objects.get(username=f_id) for f_id in self.followee)
 
     def get_posts(self):
-        return (Post.objects.get(_id=p_id) for p_id in self.posts)
+        return (Post.objects.get(_id=p_id) for p_id in reversed(self.posts))
 
     def get_timeline(self):
-        return (Post.objects.get(_id=p_id) for p_id in self.timeline)
+        return (Post.objects.get(_id=p_id) for p_id in reversed(self.timeline))
 
     def add_post(self, content):
         post = Post(content=content, uid=self.username)
