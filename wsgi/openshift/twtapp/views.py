@@ -22,6 +22,32 @@ def home(request):
                              RequestContext(request, {'header': 'home'})
                              )
 #-------------------------------------------------------------------------------
+def signup(request):
+    tpl_vars = {
+                'header': 'page', 
+                'logged': False, 
+                'signupform': SignupForm()
+            }
+
+    if request.method == 'POST':
+        signupform = SignupForm(request.POST)
+        if signupform.is_valid():
+            cd = signupform.cleaned_data
+            username, password = cd['username'], cd['password']
+            if not UserProfile.find(username):
+                user = UserProfile.objects.create(username=username,
+                                           email='{0}@djangomongotwt.com'
+                                                 .format(username))
+                user.set_password(password)
+                return login_view(request)
+
+            signupform.errors['username'] = ['Oops! That id seems to be taken!']
+
+        tpl_vars['signupform'] = signupform
+    return render_to_response('twtapp/login.html',
+                              RequestContext(request, tpl_vars))
+#-------------------------------------------------------------------------------
+
 def login_view(request, next_page=None):
     tpl_vars = {'header': 'page', 'logged': False, 'signupform': SignupForm()}
 
